@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import pkgutil
 import site
 import os
@@ -21,3 +23,9 @@ if path:
     print(f"{module_name} is installed in: {path}")
 else:
     print(f"{module_name} is not found in standard site-packages directories.")
+    sys.exit(-1)
+
+if path and path not in sys.path:
+    sys.path.append(package_path)
+
+print("Packages are ready to use.")
