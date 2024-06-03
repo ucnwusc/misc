@@ -1,6 +1,7 @@
 import pkgutil
 import site
 import os
+import sys
 
 def find_module_path(module_name):
     for path in site.getsitepackages():
@@ -9,7 +10,11 @@ def find_module_path(module_name):
             return os.path.dirname(module.__file__)
     return None
 
-module_name = 'numpy'  # Replace with your module name
+module_name=''
+if len(sys.argv) >=2:
+    module_name=sys.argv[1]
+else:
+    module_name = 'rdkit' 
 path = find_module_path(module_name)
 
 if path:
